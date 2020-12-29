@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "points.hpp"
 
 namespace Field
 {
@@ -15,6 +16,7 @@ class field
     int pointNumber_;
     int fieldDimension_;
     double initialValue_;
+    Field::points* points_;
 
     std::vector<double> fieldValue_;
 
@@ -27,19 +29,30 @@ class field
     public:
     //Constructors
         //constructors
-        field(const std::string fileName, const int pointNumber, const int fieldDimension, const double initialValue);
-        field(const std::string fileName, const int pointNumber, const int fieldDimension);
+        field(const std::string fileName, const int pointNumber, const int fieldDimension, const double initialValue, Field::points* points_);
         //distructor
         virtual ~field();
 
     //menber functions
+    //getters
     virtual std::string getFileName(){
         return fileName_;
     }
 
+    virtual Field::points* getPoints(){
+        return points_;
+    }
+    
+    virtual std::vector<double> getFieldValue(){
+        return fieldValue_;
+    }
+    //setters
+    virtual void setFieldValue(const int i, const double value){
+        fieldValue_[i] = value;
+    }
+    
     private: 
     // member functions
-    
 
 };
 
